@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>CHAYLUEKLAB Prompt Lab — คลังพรอมต์ชายลึกลับ</title>
+  <meta name="description" content="คลังพรอมต์ AI ภาษาไทยจาก CHAYLUEKLAB ค้นหา คัดลอก และปรับใช้กับ ChatGPT, Gemini, Claude, งานภาพ การตลาด ธุรกิจ LINE OA TikTok Meta Ads และเว็บไซต์" />
+  <style>
+    :root{
+      --bg:#07080b;--panel:#0d1015cc;--panel2:#11151c;--line:#2a2f39;
+      --text:#f5f0e7;--muted:#9ca3ad;--gold:#d7ad58;--red:#7f1027;--red2:#b11b39;
+      --cyan:#24e6ff;--shadow:0 20px 70px #0008;
+    }
+    *{box-sizing:border-box}html{scroll-behavior:smooth}
+    body{margin:0;background:
+      radial-gradient(circle at 15% 0%,#7f102722 0 22%,transparent 46%),
+      radial-gradient(circle at 85% 10%,#24e6ff12 0 18%,transparent 40%),
+      linear-gradient(#07080b,#090b10 70%,#07080b);color:var(--text);
+      font-family:Inter,"Noto Sans Thai",system-ui,-apple-system,Segoe UI,sans-serif;min-height:100vh}
+    body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.16;background-image:
+      linear-gradient(#ffffff07 1px,transparent 1px),linear-gradient(90deg,#ffffff07 1px,transparent 1px);
+      background-size:40px 40px;mask-image:linear-gradient(to bottom,#000,transparent 85%)}
+    a{color:inherit;text-decoration:none}button,input,select,textarea{font:inherit}
+    .wrap{max-width:1220px;margin:auto;padding:0 18px}
+    header{position:sticky;top:0;z-index:20;background:#08090cbb;backdrop-filter:blur(18px);border-bottom:1px solid #ffffff10}
+    nav{height:72px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:.08em}
+    .seal{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;border:1px solid #d7ad5877;
+      box-shadow:0 0 28px #d7ad5822 inset,0 0 28px #7f102722;color:var(--gold);font-size:13px}
+    .brand small{display:block;color:var(--muted);font-size:10px;letter-spacing:.14em;margin-top:2px}
+    .navcta{display:flex;gap:8px}.btn{border:1px solid #ffffff1a;background:#11151c;color:var(--text);padding:11px 15px;border-radius:12px;cursor:pointer}
+    .btn:hover{border-color:#d7ad5855;transform:translateY(-1px)}
+    .btn.primary{background:linear-gradient(135deg,#6d0d20,#a81837);border-color:#bd3953;box-shadow:0 10px 30px #7f102744}
+    .btn.gold{background:linear-gradient(135deg,#d7ad58,#8a6527);color:#15100a;border:0;font-weight:900}
+    .hero{padding:72px 0 42px;text-align:center;position:relative}
+    .eyebrow{display:inline-flex;gap:8px;align-items:center;border:1px solid #d7ad5840;background:#d7ad580e;color:#f0cf8b;
+      padding:8px 12px;border-radius:999px;font-size:12px;letter-spacing:.1em}
+    h1{font-size:clamp(42px,8vw,86px);line-height:.92;margin:24px auto 16px;max-width:950px;letter-spacing:-.045em}
+    h1 span{background:linear-gradient(90deg,#fff2c8,#d7ad58 45%,#ef4163 78%,#24e6ff);-webkit-background-clip:text;color:transparent}
+    .sub{color:#b5bbc6;max-width:760px;margin:0 auto 28px;font-size:clamp(16px,2vw,20px);line-height:1.7}
+    .searchbox{max-width:850px;margin:32px auto 0;display:flex;gap:10px;padding:10px;background:#0d1015cc;border:1px solid #ffffff18;
+      border-radius:18px;box-shadow:var(--shadow),0 0 55px #24e6ff09}
+    .searchbox input{flex:1;background:transparent;border:0;outline:none;color:#fff;padding:12px 14px;min-width:0}
+    .stats{display:flex;justify-content:center;gap:28px;flex-wrap:wrap;margin:28px 0 0;color:#7f8792;font-size:13px}
+    .stats b{color:#f8e9c4}
+    .toolbar{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin:24px 0 18px}
+    .chips{display:flex;gap:8px;overflow:auto;padding-bottom:4px;max-width:100%}
+    .chip{white-space:nowrap;border:1px solid #ffffff16;background:#0c0f14;color:#adb4bf;padding:9px 12px;border-radius:999px;cursor:pointer}
+    .chip.active{color:#fff2cf;border-color:#d7ad5855;background:#d7ad5812}
+    select{background:#0d1015;color:#d9dee7;border:1px solid #ffffff16;border-radius:11px;padding:10px}
+    .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+    .card{position:relative;background:linear-gradient(180deg,#11151de8,#0c0f14e8);border:1px solid #ffffff12;border-radius:18px;padding:18px;
+      min-height:240px;overflow:hidden;box-shadow:0 12px 35px #0005;transition:.22s}
+    .card:after{content:"";position:absolute;width:140px;height:140px;border-radius:50%;background:#7f10272b;right:-60px;top:-70px;filter:blur(10px)}
+    .card:hover{transform:translateY(-4px);border-color:#d7ad5844;box-shadow:0 18px 48px #0008}
+    .topline{display:flex;justify-content:space-between;gap:10px;align-items:start}
+    .badge{font-size:11px;border:1px solid #ffffff16;color:#d9bf87;background:#d7ad580d;padding:6px 8px;border-radius:999px}
+    .fav{background:transparent;border:0;color:#69717d;font-size:20px;cursor:pointer;z-index:2}.fav.on{color:#ff5874}
+    .card h3{font-size:18px;line-height:1.35;margin:17px 0 8px}.desc{color:#969eaa;font-size:14px;line-height:1.6}
+    .meta{display:flex;gap:12px;color:#6f7884;font-size:12px;margin:16px 0 18px}
+    .actions{display:flex;gap:8px;margin-top:auto}.actions .btn{flex:1;padding:10px}
+    .featured{margin:50px 0 20px;padding:24px;border-radius:22px;border:1px solid #d7ad5840;background:
+      linear-gradient(135deg,#7f10271c,#d7ad580c 46%,#24e6ff09);display:grid;grid-template-columns:1.35fr .65fr;gap:20px;align-items:center}
+    .featured h2{margin:0 0 8px;font-size:30px}.featured p{color:#aab1bc;line-height:1.7}
+    .featured .code{border:1px solid #ffffff12;background:#07090d;padding:15px;border-radius:14px;color:#d7dae0;font-family:ui-monospace,monospace;font-size:12px;line-height:1.7}
+    .cta{margin:52px 0;padding:38px 26px;border-radius:24px;text-align:center;border:1px solid #ffffff14;background:#0d1015bb}
+    .cta h2{font-size:32px;margin:0 0 8px}.cta p{color:#9da5b0}
+    footer{padding:28px 0 50px;border-top:1px solid #ffffff10;color:#77808c;font-size:13px}
+    .foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+    dialog{width:min(840px,calc(100% - 24px));border:1px solid #ffffff20;background:#0b0e13;color:#fff;border-radius:20px;padding:0;box-shadow:0 30px 100px #000b}
+    dialog::backdrop{background:#000a;backdrop-filter:blur(6px)}
+    .modal{padding:22px}.modalhead{display:flex;justify-content:space-between;gap:16px}.modalhead h3{margin:0;font-size:25px}
+    .close{background:#ffffff0d;color:#fff;border:1px solid #ffffff15;border-radius:10px;width:38px;height:38px;cursor:pointer}
+    textarea{width:100%;min-height:280px;margin:18px 0;background:#07090c;border:1px solid #ffffff16;border-radius:14px;color:#e5e8ed;padding:16px;line-height:1.7}
+    .toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);opacity:0;background:#191e27;color:#fff;border:1px solid #ffffff18;
+      padding:11px 16px;border-radius:999px;transition:.25s;z-index:50}.toast.show{opacity:1;transform:translate(-50%,0)}
+    .empty{text-align:center;color:#808895;padding:50px 0;grid-column:1/-1}
+    @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.featured{grid-template-columns:1fr}.navcta .hide-sm{display:none}}
+    @media(max-width:620px){nav{height:64px}.brand{font-size:13px}.seal{width:34px;height:34px}.hero{padding-top:48px}.grid{grid-template-columns:1fr}
+      .searchbox{flex-direction:column}.searchbox .btn{width:100%}.featured{padding:18px}.cta{padding:28px 18px}.navcta .btn{padding:9px 11px}}
+  </style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <nav>
+      <a class="brand" href="#">
+        <span class="seal">CL</span>
+        <span>CHAYLUEKLAB<small>ชายลึกลับ · PROMPT LAB</small></span>
+      </a>
+      <div class="navcta">
+        <button class="btn hide-sm" onclick="showFavs()">รายการโปรด</button>
+        <a class="btn primary" href="https://line.me/R/ti/p/@137vkvdz" target="_blank" rel="noopener">ติดต่อชายลึกลับ</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <div class="eyebrow">◆ CHAYLUEKLAB AI VAULT</div>
+    <h1>คลังพรอมต์<br><span>ชายลึกลับ</span></h1>
+    <p class="sub">พรอมต์ภาษาไทยพร้อมใช้ สำหรับ AI, ภาพ, วิดีโอ, การตลาด, ธุรกิจ, LINE OA, TikTok, Meta Ads และงานเว็บไซต์ — ค้นหาแล้วคัดลอกไปใช้ได้ทันที</p>
+    <div class="searchbox">
+      <input id="search" placeholder="ค้นหา เช่น ยิงแอด, สร้างภาพ, LINE OA, เว็บไซต์..." autocomplete="off">
+      <button class="btn gold" onclick="document.querySelector('#promptGrid').scrollIntoView()">สำรวจพรอมต์</button>
+    </div>
+    <div class="stats"><span><b id="countStat">18</b> Prompt</span><span><b>11</b> หมวด</span><span><b>Copy</b> ได้ทันที</span></div>
+  </section>
+
+  <section class="featured">
+    <div>
+      <div class="eyebrow">PROMPT ลับประจำสัปดาห์</div>
+      <h2>สร้างคอนเทนต์ขายสินค้าแบบ “ไม่ยัดเยียด”</h2>
+      <p>เปลี่ยนข้อมูลสินค้าให้เป็นโพสต์ที่มี Hook, Pain Point, Proof และ CTA โดยยังคงภาษาธรรมชาติ เหมาะกับแบรนด์ขนาดเล็กและร้านค้าท้องถิ่น</p>
+      <button class="btn primary" onclick="openPrompt(0)">เปิด Prompt</button>
+    </div>
+    <div class="code">ROLE: Senior Direct-Response Copywriter<br>INPUT: [สินค้า] [กลุ่มเป้าหมาย] [ปัญหา] [จุดเด่น]<br>OUTPUT: Hook → Story → Proof → CTA</div>
+  </section>
+
+  <div class="toolbar">
+    <div class="chips" id="chips"></div>
+    <select id="sort">
+      <option value="popular">นิยม</option>
+      <option value="new">ล่าสุด</option>
+      <option value="az">A-Z</option>
+    </select>
+  </div>
+
+  <section class="grid" id="promptGrid"></section>
+
+  <section class="cta">
+    <h2>รับ Prompt ใหม่จากชายลึกลับ</h2>
+    <p>อยากได้พรอมต์เฉพาะธุรกิจ งานขาย หรือระบบ AI ของคุณ คุยกับ CHAYLUEKLAB ได้โดยตรง</p>
+    <a class="btn gold" href="https://line.me/R/ti/p/@137vkvdz" target="_blank" rel="noopener">เปิด LINE OA</a>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© CHAYLUEKLAB · ชายลึกลับ</span>
+    <span><a href="https://chaylueklab.com" target="_blank">chaylueklab.com</a> · <a href="https://www.tiktok.com/@chailueklab" target="_blank">@chailueklab</a></span>
+  </div>
+</footer>
+
+<dialog id="dlg">
+  <div class="modal">
+    <div class="modalhead">
+      <div><div class="badge" id="mcat"></div><h3 id="mtitle"></h3></div>
+      <button class="close" onclick="dlg.close()">×</button>
+    </div>
+    <textarea id="mprompt"></textarea>
+    <div class="actions">
+      <button class="btn" onclick="fillVars()">เติมข้อมูลตัวอย่าง</button>
+      <button class="btn gold" onclick="copyCurrent()">คัดลอก Prompt</button>
+    </div>
+  </div>
+</dialog>
+<div class="toast" id="toast">คัดลอกแล้ว</div>
+
+<script>
+const prompts=[
+{t:"สร้างโพสต์ขายสินค้าแบบไม่ยัดเยียด",c:"การตลาด",d:"Hook + Pain Point + Proof + CTA แบบอ่านเป็นธรรมชาติ",p:`คุณคือ Senior Direct-Response Copywriter\nสินค้า: [ชื่อสินค้า]\nกลุ่มเป้าหมาย: [กลุ่มเป้าหมาย]\nปัญหาหลัก: [Pain Point]\nจุดเด่น: [USP]\nโทนแบรนด์: [โทน]\n\nเขียนโพสต์ขาย 3 เวอร์ชัน โดยแต่ละเวอร์ชันมี Hook, Story/Problem, Proof/Reason-to-believe และ CTA ที่ไม่กดดัน หลีกเลี่ยงคำโอเวอร์เคลม และใช้ภาษาไทยอ่านง่ายบนมือถือ`,pop:98},
+{t:"วิเคราะห์กลุ่มเป้าหมาย 5 Persona",c:"ธุรกิจ",d:"แตก Persona พร้อมแรงจูงใจ อุปสรรค และข้อความที่ควรใช้",p:`วิเคราะห์ลูกค้าของ [สินค้า/บริการ] เป็น 5 Persona\nสำหรับแต่ละ Persona ให้ระบุ: อายุ/บริบท, เป้าหมาย, Pain Point, Trigger ซื้อ, Objection, ช่องทางที่พบแบรนด์, ข้อความโฆษณาที่ควรใช้ และสิ่งที่ไม่ควรพูด\nสรุปท้ายด้วยตารางเปรียบเทียบ`,pop:94},
+{t:"ภาพสินค้า Dark Premium",c:"สร้างภาพ",d:"พรอมต์สร้างภาพสินค้าโทนดำ-แดง-ทองแบบพรีเมียม",p:`Create a premium product advertising image for [product]. Dark premium aesthetic, deep charcoal background, burgundy accents, metallic gold rim light, dramatic chiaroscuro, crisp product texture, luxury commercial photography, subtle atmospheric haze, minimal composition, strong central focal point, no extra text, no watermark, 4:5`,pop:97},
+{t:"Landing Page สำหรับโฆษณา",c:"เว็บไซต์ / Coding",d:"โครงหน้าเว็บเน้น Conversion และวัดเส้นทางซื้อ",p:`คุณคือ Senior CRO Designer\nออกแบบ Landing Page สำหรับ [สินค้า/บริการ]\nเป้าหมาย Conversion: [LINE / ซื้อสินค้า / สมัคร]\nโครง: Hero, Pain, Solution, Benefits, Social Proof, Offer, FAQ, CTA ซ้ำ\nระบุ event tracking ที่ควรมี เช่น PageView, ViewContent, CTA_Click, Purchase/Lead และการเก็บ UTM`,pop:92},
+{t:"วางโครง LINE OA Funnel",c:"LINE OA",d:"ตั้งแต่เพิ่มเพื่อน → ต้อนรับ → เสนอขาย → Follow-up",p:`ออกแบบ LINE OA Funnel สำหรับ [ธุรกิจ]\nเป้าหมาย: [ยอดขาย/เก็บลีด/สมาชิก]\nสร้าง flow ตั้งแต่ Add Friend, Welcome Message, Rich Menu, Tag/Segment, Broadcast 7 วัน, Follow-up และ Retention\nเขียนตัวอย่างข้อความสั้นพร้อม CTA ในแต่ละขั้น`,pop:96},
+{t:"TikTok Hook 20 แบบ",c:"TikTok",d:"เปิดคลิปให้หยุดเลื่อนใน 1–2 วินาทีแรก",p:`สร้าง TikTok Hook 20 แบบสำหรับ [สินค้า/เรื่อง]\nแบ่งเป็น: Curiosity, Pain, Before-After, Challenge, POV, Myth Busting\nทุก Hook ต้องสั้น พูดได้จริงใน 1-2 วินาที ไม่คลิกเบตเกินจริง และต่อยอดเป็นคลิป 15-30 วินาทีได้`,pop:95},
+{t:"วิเคราะห์ Meta Ads จาก CTR/CPC/CPA",c:"Meta Ads",d:"อ่านตัวเลขและแนะนำสิ่งที่ควรทดสอบต่อ",p:`คุณคือ Performance Marketer\nข้อมูลแคมเปญ:\nSpend: [ ]\nImpressions: [ ]\nClicks: [ ]\nCTR: [ ]\nCPC: [ ]\nLeads/Purchases: [ ]\nCPA: [ ]\n\nวิเคราะห์ว่า bottleneck อยู่ที่ Creative, Audience, Landing Page หรือ Offer พร้อมเสนอ A/B test 3 รายการ และบอก metric ที่ใช้ตัดสิน`,pop:99},
+{t:"สร้างเว็บไซต์ Web AR Concept",c:"เว็บไซต์ / Coding",d:"แปลงไอเดีย AR ให้เป็นสเปกเว็บพร้อมสร้าง",p:`คุณคือ Creative Technologist เชี่ยวชาญ WebAR, MediaPipe, Three.js\nออกแบบเว็บ AR สำหรับ [แนวเกม/กิจกรรม]\nระบุ Core Loop, Gesture/Movement input, Camera permission UX, HUD, Performance budget มือถือ, fallback mode และ monetization ที่ไม่รบกวนผู้เล่น\nสรุปเป็น Product Spec + Component Map`,pop:91},
+{t:"Prompt สำหรับครู ป.1",c:"การศึกษา",d:"สร้างแบบฝึกหัดตามหน่วย พร้อมเฉลย",p:`คุณคือครูประถมศึกษาปีที่ 1\nวิชา: [วิชา]\nหน่วย: [หน่วย]\nหัวข้อ: [หัวข้อ]\nสร้างแบบฝึก 20 ข้อ ระดับง่าย→กลาง ใช้ภาษาตามวัย มีพื้นที่ตอบ และเฉลยท้ายชุด ห้ามใส่เนื้อหาเกินระดับชั้น`,pop:87},
+{t:"สรุป Brand Profile 1 หน้า",c:"แบรนด์ CHAYLUEKLAB",d:"จัดข้อมูลแบรนด์ให้พร้อมส่งลูกค้า/พาร์ตเนอร์",p:`สรุป Brand Profile ของ [ชื่อแบรนด์] ใน 1 หน้า\nหัวข้อ: Brand Essence, Target Audience, Positioning, USP, Product/Service, Brand Voice, Visual Direction, Sales Channels, CTA\nเขียนกระชับแบบพร้อมวางในสไลด์หรือ PDF`,pop:90},
+{t:"Product Description ที่อ่านแล้วอยากซื้อ",c:"การตลาด",d:"คำอธิบายสินค้าแบบชัด ไม่เวอร์ และมีประโยชน์",p:`เขียน Product Description สำหรับ [สินค้า]\nข้อมูลจริง: [จุดเด่น/ขนาด/วัสดุ/รสชาติ]\nกลุ่มเป้าหมาย: [ ]\nสร้าง Short 1 บรรทัด, Medium 80-120 คำ และ Bullet Benefits 5 ข้อ หลีกเลี่ยงข้อมูลที่ไม่ได้ให้`,pop:88},
+{t:"SOP ธุรกิจขนาดเล็ก",c:"ธุรกิจ",d:"เปลี่ยนงานประจำให้เป็นขั้นตอนที่ทีมทำตามได้",p:`สร้าง SOP สำหรับงาน [ชื่องาน]\nระบุ Objective, Owner, Trigger, Inputs, Steps, Quality Check, Exception, Output, KPI และ Checklist ก่อนปิดงาน\nเขียนให้คนใหม่เปิดอ่านแล้วทำตามได้`,pop:84},
+{t:"AI Chat System Prompt สำหรับแบรนด์",c:"AI Chat",d:"กำหนดบทบาท ขอบเขต และข้อมูลที่ห้ามแต่ง",p:`สร้าง System Prompt สำหรับ AI ผู้ช่วยแบรนด์ [ชื่อแบรนด์]\nหน้าที่: [ ]\nแหล่งข้อมูลที่เชื่อถือได้: [ ]\nกฎสำคัญ: ห้ามแต่งราคา/สต็อก/นโยบาย, ถ้าไม่แน่ใจให้บอก, ตอบสั้นบนมือถือ, รักษา Brand Voice\nเพิ่มตัวอย่าง intent 8 แบบและรูปแบบคำตอบ`,pop:93},
+{t:"Storyboard วิดีโอสินค้า 15 วินาที",c:"วิดีโอ",d:"วางช็อตพร้อมข้อความหน้าจอและจังหวะ CTA",p:`สร้าง Storyboard วิดีโอ 15 วินาทีสำหรับ [สินค้า]\nแบ่ง 0-2s Hook, 2-6s Problem, 6-11s Product/Proof, 11-15s CTA\nแต่ละช่วงระบุภาพ, การเคลื่อนกล้อง, ข้อความบนจอ, เสียง/จังหวะ และ transition`,pop:89},
+{t:"รีไรต์ข้อความให้ดูแพงขึ้น",c:"แบรนด์ CHAYLUEKLAB",d:"เปลี่ยนข้อความธรรมดาเป็นภาษาพรีเมียมแต่ไม่เว่อร์",p:`รีไรต์ข้อความต่อไปนี้ให้ดู Premium, concise, modern และเชื่อถือได้ โดยคงข้อเท็จจริงเดิมทุกประการ\nข้อความ: [วางข้อความ]\nส่ง 3 โทน: Minimal Luxury / Tech Premium / Warm Premium`,pop:82},
+{t:"วิเคราะห์คู่แข่งแบบใช้ได้จริง",c:"ธุรกิจ",d:"เปรียบเทียบ Positioning, Offer, Content, Funnel",p:`วิเคราะห์คู่แข่งของ [ธุรกิจ] จำนวน [3-5] รายจากข้อมูลที่ฉันให้\nเปรียบเทียบ Positioning, Price/Offer, USP, Content Angle, Funnel, Proof และ Weak Spot\nห้ามเดาข้อมูลที่ไม่มีหลักฐาน ให้ทำช่อง 'ยังไม่ทราบ' ชัดเจน`,pop:86},
+{t:"สร้าง Rich Menu 6 ปุ่ม LINE OA",c:"LINE OA",d:"ออกแบบโครงปุ่มพร้อมข้อความตอบกลับ",p:`ออกแบบ Rich Menu LINE OA 6 ปุ่มสำหรับ [แบรนด์]\nเป้าหมายหลัก: [ขาย/บริการ]\nแต่ละปุ่มระบุ Label, Action, Destination/Keyword และข้อความตอบกลับ\nจัดลำดับปุ่มตามโอกาสสร้าง Conversion และลดจำนวนคลิก`,pop:85},
+{t:"Creative Brief สำหรับยิงแอด",c:"Meta Ads",d:"บรีฟภาพ/วิดีโอให้ทีมทำครีเอทีฟได้ทันที",p:`สร้าง Creative Brief สำหรับ Meta Ads ของ [สินค้า]\nObjective: [ ]\nAudience: [ ]\nOffer: [ ]\nสร้าง 4 Concept โดยแต่ละ Concept มี Hook, Visual, Primary Text, Headline, CTA, Proof และ A/B variable ที่จะทดสอบ`,pop:90}
+];
+let active="ทั้งหมด", favorites=JSON.parse(localStorage.getItem("clFavs")||"[]"), current=null;
+const cats=["ทั้งหมด",...new Set(prompts.map(x=>x.c))];
+const chips=document.getElementById("chips"), grid=document.getElementById("promptGrid"), search=document.getElementById("search"), sort=document.getElementById("sort");
+cats.forEach(c=>{const b=document.createElement("button");b.className="chip"+(c==="ทั้งหมด"?" active":"");b.textContent=c;b.onclick=()=>{active=c;[...chips.children].forEach(x=>x.classList.toggle("active",x.textContent===c));render()};chips.appendChild(b)});
+function render(){
+  let q=search.value.toLowerCase().trim();
+  let data=prompts.map((x,i)=>({...x,i})).filter(x=>(active==="ทั้งหมด"||x.c===active)&&(!q||(x.t+x.d+x.c).toLowerCase().includes(q)));
+  if(sort.value==="popular")data.sort((a,b)=>b.pop-a.pop); if(sort.value==="az")data.sort((a,b)=>a.t.localeCompare(b.t,"th")); if(sort.value==="new")data.reverse();
+  document.getElementById("countStat").textContent=data.length;
+  grid.innerHTML=data.length?data.map(x=>`<article class="card">
+    <div class="topline"><span class="badge">${x.c}</span><button class="fav ${favorites.includes(x.i)?'on':''}" onclick="toggleFav(${x.i})">♥</button></div>
+    <h3>${x.t}</h3><div class="desc">${x.d}</div><div class="meta"><span>นิยม ${x.pop}%</span><span>พร้อมคัดลอก</span></div>
+    <div class="actions"><button class="btn" onclick="openPrompt(${x.i})">Preview</button><button class="btn primary" onclick="quickCopy(${x.i})">Copy Prompt</button></div>
+  </article>`).join(""):`<div class="empty">ไม่พบ Prompt ที่ตรงกับคำค้นหา</div>`;
+}
+function openPrompt(i){current=i;let x=prompts[i];mcat.textContent=x.c;mtitle.textContent=x.t;mprompt.value=x.p;dlg.showModal()}
+function quickCopy(i){navigator.clipboard.writeText(prompts[i].p);pop()}
+function copyCurrent(){navigator.clipboard.writeText(mprompt.value);pop()}
+function pop(){toast.classList.add("show");setTimeout(()=>toast.classList.remove("show"),1300)}
+function toggleFav(i){favorites.includes(i)?favorites=favorites.filter(x=>x!==i):favorites.push(i);localStorage.setItem("clFavs",JSON.stringify(favorites));render()}
+function showFavs(){active="__fav__";[...chips.children].forEach(x=>x.classList.remove("active"));let old=search.value;search.value="";grid.innerHTML=favorites.length?favorites.map(i=>{let x=prompts[i];return `<article class="card"><div class="topline"><span class="badge">${x.c}</span><button class="fav on" onclick="toggleFav(${i})">♥</button></div><h3>${x.t}</h3><div class="desc">${x.d}</div><div class="meta"><span>รายการโปรด</span></div><div class="actions"><button class="btn" onclick="openPrompt(${i})">Preview</button><button class="btn primary" onclick="quickCopy(${i})">Copy Prompt</button></div></article>`}).join(""):`<div class="empty">ยังไม่มีรายการโปรด</div>`}
+function fillVars(){mprompt.value=mprompt.value.replaceAll("[ชื่อสินค้า]","ชายลึกลับ น้ำพริกไร้เงา").replaceAll("[กลุ่มเป้าหมาย]","คนวัยทำงานที่ชอบอาหารรสจัดและซื้อผ่านมือถือ").replaceAll("[สินค้า/บริการ]","สินค้าและบริการของ CHAYLUEKLAB").replaceAll("[ชื่อแบรนด์]","CHAYLUEKLAB / ชายลึกลับ").replaceAll("[ธุรกิจ]","CHAYLUEKLAB")}
+search.addEventListener("input",render);sort.addEventListener("change",render);render();
+</script>
+</body>
+</html>
